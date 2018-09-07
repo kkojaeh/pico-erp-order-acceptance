@@ -1,5 +1,5 @@
 rootProject.name = 'pico-erp-order-acceptance'
 include 'order-acceptance-api'
 include 'order-acceptance-impl'
-include 'order-acceptance-test-cfg'
+include 'order-acceptance-test'
 
