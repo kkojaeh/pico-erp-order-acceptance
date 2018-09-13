@@ -47,7 +47,7 @@ public class OrderAcceptanceApplication implements ApplicationStarter {
   @Public
   public AuditConfiguration auditConfiguration() {
     return AuditConfiguration.builder()
-      .packageToScan("pico.erp.orderacceptance")
+      .packageToScan("pico.erp.order.acceptance")
       .entity(pico.erp.project.ROLE.class)
       .valueObject(Contact.class)
       .build();
