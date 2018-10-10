@@ -7,20 +7,20 @@ import org.mapstruct.MappingTarget;
 import org.mapstruct.Mappings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import pico.erp.company.CompanyData;
+import pico.erp.company.CompanyId;
 import pico.erp.company.CompanyService;
-import pico.erp.company.data.CompanyData;
-import pico.erp.company.data.CompanyId;
+import pico.erp.item.ItemData;
+import pico.erp.item.ItemId;
 import pico.erp.item.ItemService;
-import pico.erp.item.data.ItemData;
-import pico.erp.item.data.ItemId;
 import pico.erp.order.acceptance.OrderAcceptance;
 import pico.erp.order.acceptance.item.OrderAcceptanceItem;
+import pico.erp.project.ProjectData;
+import pico.erp.project.ProjectId;
 import pico.erp.project.ProjectService;
-import pico.erp.project.data.ProjectData;
-import pico.erp.project.data.ProjectId;
+import pico.erp.user.UserData;
+import pico.erp.user.UserId;
 import pico.erp.user.UserService;
-import pico.erp.user.data.UserData;
-import pico.erp.user.data.UserId;
 
 @Mapper
 public abstract class OrderAcceptanceJpaMapper {

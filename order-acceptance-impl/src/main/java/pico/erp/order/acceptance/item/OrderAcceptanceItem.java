@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import pico.erp.audit.annotation.Audit;
-import pico.erp.item.data.ItemData;
+import pico.erp.item.ItemData;
 import pico.erp.order.acceptance.OrderAcceptance;
 import pico.erp.order.acceptance.OrderAcceptanceExceptions.CannotModifyException;
 import pico.erp.order.acceptance.item.OrderAcceptanceItemEvents.CreatedEvent;

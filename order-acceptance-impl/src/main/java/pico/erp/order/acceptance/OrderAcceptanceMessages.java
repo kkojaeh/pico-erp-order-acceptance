@@ -9,13 +9,13 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import lombok.Data;
 import lombok.Value;
-import pico.erp.company.data.CompanyData;
+import pico.erp.company.CompanyData;
 import pico.erp.order.acceptance.data.OrderAcceptanceId;
-import pico.erp.project.data.ProjectData;
+import pico.erp.project.ProjectData;
 import pico.erp.shared.TypeDefinitions;
 import pico.erp.shared.data.Address;
 import pico.erp.shared.event.Event;
-import pico.erp.user.data.UserData;
+import pico.erp.user.UserData;
 
 public interface OrderAcceptanceMessages {
 

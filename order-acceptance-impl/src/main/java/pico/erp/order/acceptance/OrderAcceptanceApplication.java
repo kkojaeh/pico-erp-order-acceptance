@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Bean;
-import pico.erp.audit.data.AuditConfiguration;
+import pico.erp.audit.AuditConfiguration;
 import pico.erp.shared.ApplicationStarter;
 import pico.erp.shared.Public;
 import pico.erp.shared.SpringBootConfigs;
@@ -48,7 +48,7 @@ public class OrderAcceptanceApplication implements ApplicationStarter {
   public AuditConfiguration auditConfiguration() {
     return AuditConfiguration.builder()
       .packageToScan("pico.erp.order.acceptance")
-      .entity(pico.erp.project.ROLE.class)
+      .entity(OrderAcceptanceRoles.class)
       .valueObject(Contact.class)
       .build();
   }
@@ -56,13 +56,13 @@ public class OrderAcceptanceApplication implements ApplicationStarter {
   @Bean
   @Public
   public Role orderAcceptanceAccessorRole() {
-    return ROLE.ORDER_ACCEPTANCE_ACCESSOR;
+    return OrderAcceptanceRoles.ORDER_ACCEPTANCE_ACCESSOR;
   }
 
   @Bean
   @Public
   public Role orderAcceptanceManagerRole() {
-    return ROLE.ORDER_ACCEPTANCE_MANAGER;
+    return OrderAcceptanceRoles.ORDER_ACCEPTANCE_MANAGER;
   }
 
   @Override

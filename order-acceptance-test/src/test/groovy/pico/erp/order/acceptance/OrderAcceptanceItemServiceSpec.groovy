@@ -7,17 +7,17 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.test.annotation.Rollback
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.transaction.annotation.Transactional
-import pico.erp.company.data.CompanyId
-import pico.erp.item.data.ItemId
+import pico.erp.company.CompanyId
+import pico.erp.item.ItemId
 import pico.erp.order.acceptance.data.OrderAcceptanceId
 import pico.erp.order.acceptance.item.OrderAcceptanceItemExceptions
 import pico.erp.order.acceptance.item.OrderAcceptanceItemRequests
 import pico.erp.order.acceptance.item.OrderAcceptanceItemService
 import pico.erp.order.acceptance.item.data.OrderAcceptanceItemId
-import pico.erp.project.data.ProjectId
+import pico.erp.project.ProjectId
 import pico.erp.shared.IntegrationConfiguration
 import pico.erp.shared.data.Address
-import pico.erp.user.data.UserId
+import pico.erp.user.UserId
 import spock.lang.Specification
 
 import java.time.OffsetDateTime

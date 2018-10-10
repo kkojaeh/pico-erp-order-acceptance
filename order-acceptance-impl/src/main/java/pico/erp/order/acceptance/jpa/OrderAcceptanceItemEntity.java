@@ -23,7 +23,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import pico.erp.item.data.ItemId;
+import pico.erp.item.ItemId;
 import pico.erp.order.acceptance.item.data.OrderAcceptanceItemId;
 import pico.erp.order.acceptance.item.data.OrderAcceptanceItemStatusKind;
 import pico.erp.shared.TypeDefinitions;

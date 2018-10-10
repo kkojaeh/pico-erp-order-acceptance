@@ -12,7 +12,7 @@ import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import pico.erp.audit.annotation.Audit;
-import pico.erp.company.data.CompanyData;
+import pico.erp.company.CompanyData;
 import pico.erp.order.acceptance.OrderAcceptanceEvents.AcceptedEvent;
 import pico.erp.order.acceptance.OrderAcceptanceEvents.CreatedEvent;
 import pico.erp.order.acceptance.OrderAcceptanceEvents.DeletedEvent;
@@ -21,9 +21,9 @@ import pico.erp.order.acceptance.OrderAcceptanceExceptions.CannotAcceptException
 import pico.erp.order.acceptance.OrderAcceptanceExceptions.CannotModifyException;
 import pico.erp.order.acceptance.data.OrderAcceptanceId;
 import pico.erp.order.acceptance.data.OrderAcceptanceStatusKind;
-import pico.erp.project.data.ProjectData;
+import pico.erp.project.ProjectData;
 import pico.erp.shared.data.Address;
-import pico.erp.user.data.UserData;
+import pico.erp.user.UserData;
 
 /**
  * 주문 접수

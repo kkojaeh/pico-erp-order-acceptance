@@ -2,10 +2,10 @@ package pico.erp.order.acceptance.data;
 
 import java.time.OffsetDateTime;
 import lombok.Data;
-import pico.erp.company.data.CompanyId;
-import pico.erp.project.data.ProjectId;
+import pico.erp.company.CompanyId;
+import pico.erp.project.ProjectId;
 import pico.erp.shared.data.Address;
-import pico.erp.user.data.UserId;
+import pico.erp.user.UserId;
 
 @Data
 public class OrderAcceptanceData {

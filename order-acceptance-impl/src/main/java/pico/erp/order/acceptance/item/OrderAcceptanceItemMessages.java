@@ -7,7 +7,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.Value;
-import pico.erp.item.data.ItemData;
+import pico.erp.item.ItemData;
 import pico.erp.order.acceptance.OrderAcceptance;
 import pico.erp.order.acceptance.item.data.OrderAcceptanceItemId;
 import pico.erp.shared.event.Event;

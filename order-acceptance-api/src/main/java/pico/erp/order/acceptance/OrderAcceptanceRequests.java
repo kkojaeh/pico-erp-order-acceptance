@@ -10,12 +10,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pico.erp.company.data.CompanyId;
+import pico.erp.company.CompanyId;
 import pico.erp.order.acceptance.data.OrderAcceptanceId;
-import pico.erp.project.data.ProjectId;
+import pico.erp.project.ProjectId;
 import pico.erp.shared.TypeDefinitions;
 import pico.erp.shared.data.Address;
-import pico.erp.user.data.UserId;
+import pico.erp.user.UserId;
 
 public interface OrderAcceptanceRequests {
 

@@ -4,7 +4,7 @@ import java.util.Optional;
 import java.util.stream.Stream;
 import javax.validation.constraints.NotNull;
 import org.springframework.stereotype.Repository;
-import pico.erp.item.data.ItemId;
+import pico.erp.item.ItemId;
 import pico.erp.order.acceptance.data.OrderAcceptanceId;
 import pico.erp.order.acceptance.item.data.OrderAcceptanceItemId;
 

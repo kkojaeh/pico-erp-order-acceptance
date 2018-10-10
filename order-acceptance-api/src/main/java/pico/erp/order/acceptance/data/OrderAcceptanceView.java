@@ -6,11 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pico.erp.company.data.CompanyId;
-import pico.erp.item.data.ItemId;
-import pico.erp.project.data.ProjectId;
+import pico.erp.company.CompanyId;
+import pico.erp.item.ItemId;
+import pico.erp.project.ProjectId;
 import pico.erp.shared.data.Auditor;
-import pico.erp.user.data.UserId;
+import pico.erp.user.UserId;
 
 @Data
 public class OrderAcceptanceView {
