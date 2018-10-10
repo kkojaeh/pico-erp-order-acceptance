@@ -3,9 +3,7 @@ package pico.erp.order.acceptance.item;
 import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import pico.erp.order.acceptance.data.OrderAcceptanceId;
-import pico.erp.order.acceptance.item.data.OrderAcceptanceItemData;
-import pico.erp.order.acceptance.item.data.OrderAcceptanceItemId;
+import pico.erp.order.acceptance.OrderAcceptanceId;
 
 public interface OrderAcceptanceItemService {
 

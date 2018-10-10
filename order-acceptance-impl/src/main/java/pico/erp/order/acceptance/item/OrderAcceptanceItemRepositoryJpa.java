@@ -1,4 +1,4 @@
-package pico.erp.order.acceptance.jpa;
+package pico.erp.order.acceptance.item;
 
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -10,10 +10,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import pico.erp.item.ItemId;
-import pico.erp.order.acceptance.data.OrderAcceptanceId;
-import pico.erp.order.acceptance.item.OrderAcceptanceItem;
-import pico.erp.order.acceptance.item.OrderAcceptanceItemRepository;
-import pico.erp.order.acceptance.item.data.OrderAcceptanceItemId;
+import pico.erp.order.acceptance.OrderAcceptanceId;
+import pico.erp.order.acceptance.OrderAcceptanceJpaMapper;
 
 @Repository
 interface OrderAcceptanceItemEntityRepository extends

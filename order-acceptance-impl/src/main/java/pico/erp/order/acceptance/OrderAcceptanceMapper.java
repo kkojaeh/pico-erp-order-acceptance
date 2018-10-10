@@ -9,19 +9,10 @@ import org.springframework.context.annotation.Lazy;
 import pico.erp.company.CompanyData;
 import pico.erp.company.CompanyId;
 import pico.erp.company.CompanyService;
-import pico.erp.item.ItemData;
-import pico.erp.item.ItemId;
-import pico.erp.item.ItemService;
 import pico.erp.order.acceptance.OrderAcceptanceRequests.AcceptRequest;
 import pico.erp.order.acceptance.OrderAcceptanceRequests.CreateRequest;
 import pico.erp.order.acceptance.OrderAcceptanceRequests.DeleteRequest;
 import pico.erp.order.acceptance.OrderAcceptanceRequests.UpdateRequest;
-import pico.erp.order.acceptance.data.OrderAcceptanceData;
-import pico.erp.order.acceptance.data.OrderAcceptanceId;
-import pico.erp.order.acceptance.item.OrderAcceptanceItem;
-import pico.erp.order.acceptance.item.OrderAcceptanceItemMessages;
-import pico.erp.order.acceptance.item.OrderAcceptanceItemRequests;
-import pico.erp.order.acceptance.item.data.OrderAcceptanceItemData;
 import pico.erp.project.ProjectData;
 import pico.erp.project.ProjectId;
 import pico.erp.project.ProjectService;
@@ -39,10 +30,6 @@ public abstract class OrderAcceptanceMapper {
   @Lazy
   @Autowired
   private UserService userService;
-
-  @Lazy
-  @Autowired
-  private ItemService itemService;
 
   @Lazy
   @Autowired
@@ -64,11 +51,7 @@ public abstract class OrderAcceptanceMapper {
       .orElse(null);
   }
 
-  protected ItemData map(ItemId itemId) {
-    return Optional.ofNullable(itemId)
-      .map(itemService::get)
-      .orElse(null);
-  }
+
 
   protected ProjectData map(ProjectId projectId) {
     return Optional.ofNullable(projectId)
@@ -76,7 +59,7 @@ public abstract class OrderAcceptanceMapper {
       .orElse(null);
   }
 
-  protected OrderAcceptance map(OrderAcceptanceId orderAcceptanceId) {
+  public OrderAcceptance map(OrderAcceptanceId orderAcceptanceId) {
     return Optional.ofNullable(orderAcceptanceId)
       .map(id -> orderAcceptanceRepository.findBy(id)
         .orElseThrow(OrderAcceptanceExceptions.NotFoundException::new)
@@ -85,35 +68,31 @@ public abstract class OrderAcceptanceMapper {
   }
 
   @Mappings({
-    @Mapping(target = "customerId", source = "customerData.id"),
-    @Mapping(target = "managerId", source = "managerData.id"),
-    @Mapping(target = "purchaserId", source = "purchaserData.id"),
-    @Mapping(target = "receiverId", source = "receiverData.id"),
-    @Mapping(target = "projectId", source = "projectData.id")
+    @Mapping(target = "customerId", source = "customer.id"),
+    @Mapping(target = "managerId", source = "manager.id"),
+    @Mapping(target = "purchaserId", source = "purchaser.id"),
+    @Mapping(target = "receiverId", source = "receiver.id"),
+    @Mapping(target = "projectId", source = "project.id")
   })
   public abstract OrderAcceptanceData map(OrderAcceptance orderAcceptance);
 
-  @Mappings({
-    @Mapping(target = "orderAcceptanceId", source = "orderAcceptance.id"),
-    @Mapping(target = "itemId", source = "itemData.id")
-  })
-  public abstract OrderAcceptanceItemData map(OrderAcceptanceItem orderAcceptanceItem);
+
 
   @Mappings({
-    @Mapping(target = "customerData", source = "customerId"),
-    @Mapping(target = "managerData", source = "managerId"),
-    @Mapping(target = "purchaserData", source = "purchaserId"),
-    @Mapping(target = "receiverData", source = "receiverId"),
-    @Mapping(target = "projectData", source = "projectId")
+    @Mapping(target = "customer", source = "customerId"),
+    @Mapping(target = "manager", source = "managerId"),
+    @Mapping(target = "purchaser", source = "purchaserId"),
+    @Mapping(target = "receiver", source = "receiverId"),
+    @Mapping(target = "project", source = "projectId")
   })
   public abstract OrderAcceptanceMessages.CreateRequest map(CreateRequest request);
 
   @Mappings({
-    @Mapping(target = "customerData", source = "customerId"),
-    @Mapping(target = "managerData", source = "managerId"),
-    @Mapping(target = "purchaserData", source = "purchaserId"),
-    @Mapping(target = "receiverData", source = "receiverId"),
-    @Mapping(target = "projectData", source = "projectId")
+    @Mapping(target = "customer", source = "customerId"),
+    @Mapping(target = "manager", source = "managerId"),
+    @Mapping(target = "purchaser", source = "purchaserId"),
+    @Mapping(target = "receiver", source = "receiverId"),
+    @Mapping(target = "project", source = "projectId")
   })
   public abstract OrderAcceptanceMessages.UpdateRequest map(UpdateRequest request);
 
@@ -122,20 +101,7 @@ public abstract class OrderAcceptanceMapper {
   public abstract OrderAcceptanceMessages.AcceptRequest map(AcceptRequest request);
 
 
-  @Mappings({
-    @Mapping(target = "orderAcceptance", source = "orderAcceptanceId"),
-    @Mapping(target = "itemData", source = "itemId")
-  })
-  public abstract OrderAcceptanceItemMessages.CreateRequest map(
-    OrderAcceptanceItemRequests.CreateRequest request);
 
-  @Mappings({
-  })
-  public abstract OrderAcceptanceItemMessages.UpdateRequest map(
-    OrderAcceptanceItemRequests.UpdateRequest request);
-
-  public abstract OrderAcceptanceItemMessages.DeleteRequest map(
-    OrderAcceptanceItemRequests.DeleteRequest request);
 
 
 }

@@ -19,8 +19,6 @@ import pico.erp.order.acceptance.OrderAcceptanceEvents.DeletedEvent;
 import pico.erp.order.acceptance.OrderAcceptanceEvents.UpdatedEvent;
 import pico.erp.order.acceptance.OrderAcceptanceExceptions.CannotAcceptException;
 import pico.erp.order.acceptance.OrderAcceptanceExceptions.CannotModifyException;
-import pico.erp.order.acceptance.data.OrderAcceptanceId;
-import pico.erp.order.acceptance.data.OrderAcceptanceStatusKind;
 import pico.erp.project.ProjectData;
 import pico.erp.shared.data.Address;
 import pico.erp.user.UserData;
@@ -48,9 +46,9 @@ public class OrderAcceptance implements Serializable {
 
   OffsetDateTime dueDate;
 
-  CompanyData customerData;
+  CompanyData customer;
 
-  UserData managerData;
+  UserData manager;
 
   String purchaseOrderNumber;
 
@@ -66,11 +64,11 @@ public class OrderAcceptance implements Serializable {
 
   String deliveryMobilePhoneNumber;
 
-  CompanyData purchaserData;
+  CompanyData purchaser;
 
-  CompanyData receiverData;
+  CompanyData receiver;
 
-  ProjectData projectData;
+  ProjectData project;
 
   OrderAcceptanceStatusKind status;
 
@@ -85,15 +83,15 @@ public class OrderAcceptance implements Serializable {
     this.orderedDate = request.getOrderedDate();
     this.status = OrderAcceptanceStatusKind.CREATED;
     this.dueDate = request.getDueDate();
-    this.managerData = request.getManagerData();
-    this.customerData = request.getCustomerData();
+    this.manager = request.getManager();
+    this.customer = request.getCustomer();
     this.deliveryAddress = request.getDeliveryAddress();
     this.deliveryMobilePhoneNumber = request.getDeliveryMobilePhoneNumber();
     this.deliveryTelephoneNumber = request.getDeliveryTelephoneNumber();
     this.purchaseOrderNumber = request.getPurchaseOrderNumber();
-    this.projectData = request.getProjectData();
-    this.receiverData = request.getReceiverData();
-    this.purchaserData = request.getPurchaserData();
+    this.project = request.getProject();
+    this.receiver = request.getReceiver();
+    this.purchaser = request.getPurchaser();
     return new OrderAcceptanceMessages.CreateResponse(
       Arrays.asList(new CreatedEvent(this.id))
     );
@@ -106,15 +104,15 @@ public class OrderAcceptance implements Serializable {
     }
     this.name = request.getName();
     this.dueDate = request.getDueDate();
-    this.managerData = request.getManagerData();
-    this.customerData = request.getCustomerData();
+    this.manager = request.getManager();
+    this.customer = request.getCustomer();
     this.deliveryAddress = request.getDeliveryAddress();
     this.deliveryMobilePhoneNumber = request.getDeliveryMobilePhoneNumber();
     this.deliveryTelephoneNumber = request.getDeliveryTelephoneNumber();
     this.purchaseOrderNumber = request.getPurchaseOrderNumber();
-    this.projectData = request.getProjectData();
-    this.receiverData = request.getReceiverData();
-    this.purchaserData = request.getPurchaserData();
+    this.project = request.getProject();
+    this.receiver = request.getReceiver();
+    this.purchaser = request.getPurchaser();
     return new OrderAcceptanceMessages.UpdateResponse(
       Arrays.asList(new UpdatedEvent(this.id))
     );

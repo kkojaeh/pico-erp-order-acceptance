@@ -1,4 +1,4 @@
-package pico.erp.order.acceptance.data;
+package pico.erp.order.acceptance;
 
 import java.time.OffsetDateTime;
 import java.util.Set;

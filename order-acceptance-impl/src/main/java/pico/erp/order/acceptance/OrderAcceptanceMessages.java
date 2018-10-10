@@ -10,7 +10,6 @@ import javax.validation.constraints.Size;
 import lombok.Data;
 import lombok.Value;
 import pico.erp.company.CompanyData;
-import pico.erp.order.acceptance.data.OrderAcceptanceId;
 import pico.erp.project.ProjectData;
 import pico.erp.shared.TypeDefinitions;
 import pico.erp.shared.data.Address;
@@ -39,10 +38,10 @@ public interface OrderAcceptanceMessages {
     OffsetDateTime dueDate;
 
     @NotNull
-    CompanyData customerData;
+    CompanyData customer;
 
     @NotNull
-    UserData managerData;
+    UserData manager;
 
     @Size(max = TypeDefinitions.CODE_LENGTH)
     String purchaseOrderNumber;
@@ -58,13 +57,13 @@ public interface OrderAcceptanceMessages {
     String deliveryMobilePhoneNumber;
 
     @NotNull
-    CompanyData purchaserData;
+    CompanyData purchaser;
 
     @NotNull
-    CompanyData receiverData;
+    CompanyData receiver;
 
     @NotNull
-    ProjectData projectData;
+    ProjectData project;
 
   }
 
@@ -80,10 +79,10 @@ public interface OrderAcceptanceMessages {
     OffsetDateTime dueDate;
 
     @NotNull
-    CompanyData customerData;
+    CompanyData customer;
 
     @NotNull
-    UserData managerData;
+    UserData manager;
 
     @Size(max = TypeDefinitions.CODE_LENGTH)
     String purchaseOrderNumber;
@@ -99,13 +98,13 @@ public interface OrderAcceptanceMessages {
     String deliveryMobilePhoneNumber;
 
     @NotNull
-    CompanyData purchaserData;
+    CompanyData purchaser;
 
     @NotNull
-    CompanyData receiverData;
+    CompanyData receiver;
 
     @NotNull
-    ProjectData projectData;
+    ProjectData project;
 
   }
 

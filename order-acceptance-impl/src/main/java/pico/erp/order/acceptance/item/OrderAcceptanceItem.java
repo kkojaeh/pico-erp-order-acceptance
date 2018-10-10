@@ -19,8 +19,6 @@ import pico.erp.order.acceptance.OrderAcceptanceExceptions.CannotModifyException
 import pico.erp.order.acceptance.item.OrderAcceptanceItemEvents.CreatedEvent;
 import pico.erp.order.acceptance.item.OrderAcceptanceItemEvents.DeletedEvent;
 import pico.erp.order.acceptance.item.OrderAcceptanceItemEvents.UpdatedEvent;
-import pico.erp.order.acceptance.item.data.OrderAcceptanceItemId;
-import pico.erp.order.acceptance.item.data.OrderAcceptanceItemStatusKind;
 
 /**
  * 주문 접수
@@ -42,7 +40,7 @@ public class OrderAcceptanceItem implements Serializable {
 
   OrderAcceptance orderAcceptance;
 
-  ItemData itemData;
+  ItemData item;
 
   BigDecimal unitPrice;
 
@@ -54,7 +52,7 @@ public class OrderAcceptanceItem implements Serializable {
     OrderAcceptanceItemMessages.CreateRequest request) {
     this.id = request.getId();
     this.orderAcceptance = request.getOrderAcceptance();
-    this.itemData = request.getItemData();
+    this.item = request.getItem();
     this.status = OrderAcceptanceItemStatusKind.CREATED;
     this.unitPrice = request.getUnitPrice();
     this.quantity = request.getQuantity();

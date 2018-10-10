@@ -1,4 +1,4 @@
-package pico.erp.order.acceptance.jpa;
+package pico.erp.order.acceptance.item;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
@@ -24,8 +24,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import pico.erp.item.ItemId;
-import pico.erp.order.acceptance.item.data.OrderAcceptanceItemId;
-import pico.erp.order.acceptance.item.data.OrderAcceptanceItemStatusKind;
+import pico.erp.order.acceptance.OrderAcceptanceEntity;
 import pico.erp.shared.TypeDefinitions;
 import pico.erp.shared.data.Auditor;
 

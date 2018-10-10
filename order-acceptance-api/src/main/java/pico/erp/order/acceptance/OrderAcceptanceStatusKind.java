@@ -1,8 +1,8 @@
-package pico.erp.order.acceptance.item.data;
+package pico.erp.order.acceptance;
 
 import pico.erp.shared.data.LocalizedNameable;
 
-public enum OrderAcceptanceItemStatusKind implements LocalizedNameable {
+public enum OrderAcceptanceStatusKind implements LocalizedNameable {
 
   /**
    * 주문이 접수가 생성됨을 의미

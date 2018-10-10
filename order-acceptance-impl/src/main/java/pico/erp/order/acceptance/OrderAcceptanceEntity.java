@@ -1,4 +1,4 @@
-package pico.erp.order.acceptance.jpa;
+package pico.erp.order.acceptance;
 
 
 import java.io.Serializable;
@@ -27,8 +27,6 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import pico.erp.company.CompanyId;
-import pico.erp.order.acceptance.data.OrderAcceptanceId;
-import pico.erp.order.acceptance.data.OrderAcceptanceStatusKind;
 import pico.erp.project.ProjectId;
 import pico.erp.shared.TypeDefinitions;
 import pico.erp.shared.data.Address;

@@ -1,4 +1,4 @@
-package pico.erp.order.acceptance.data;
+package pico.erp.order.acceptance;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.io.Serializable;

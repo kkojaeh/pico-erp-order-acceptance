@@ -9,11 +9,10 @@ import org.springframework.test.context.ActiveProfiles
 import org.springframework.transaction.annotation.Transactional
 import pico.erp.company.CompanyId
 import pico.erp.item.ItemId
-import pico.erp.order.acceptance.data.OrderAcceptanceId
 import pico.erp.order.acceptance.item.OrderAcceptanceItemExceptions
+import pico.erp.order.acceptance.item.OrderAcceptanceItemId
 import pico.erp.order.acceptance.item.OrderAcceptanceItemRequests
 import pico.erp.order.acceptance.item.OrderAcceptanceItemService
-import pico.erp.order.acceptance.item.data.OrderAcceptanceItemId
 import pico.erp.project.ProjectId
 import pico.erp.shared.IntegrationConfiguration
 import pico.erp.shared.data.Address

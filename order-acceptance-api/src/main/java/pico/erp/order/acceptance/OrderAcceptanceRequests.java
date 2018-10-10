@@ -11,7 +11,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pico.erp.company.CompanyId;
-import pico.erp.order.acceptance.data.OrderAcceptanceId;
 import pico.erp.project.ProjectId;
 import pico.erp.shared.TypeDefinitions;
 import pico.erp.shared.data.Address;

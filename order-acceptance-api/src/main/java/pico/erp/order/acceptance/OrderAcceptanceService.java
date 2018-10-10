@@ -2,8 +2,6 @@ package pico.erp.order.acceptance;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import pico.erp.order.acceptance.data.OrderAcceptanceData;
-import pico.erp.order.acceptance.data.OrderAcceptanceId;
 
 public interface OrderAcceptanceService {
 

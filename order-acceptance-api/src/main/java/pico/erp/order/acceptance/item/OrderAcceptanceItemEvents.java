@@ -3,7 +3,6 @@ package pico.erp.order.acceptance.item;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pico.erp.order.acceptance.item.data.OrderAcceptanceItemId;
 import pico.erp.shared.event.Event;
 
 public interface OrderAcceptanceItemEvents {

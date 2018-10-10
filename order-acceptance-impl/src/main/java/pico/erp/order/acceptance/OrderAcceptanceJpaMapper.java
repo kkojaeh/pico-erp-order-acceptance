@@ -1,4 +1,4 @@
-package pico.erp.order.acceptance.jpa;
+package pico.erp.order.acceptance;
 
 import java.util.Optional;
 import org.mapstruct.Mapper;
@@ -13,8 +13,8 @@ import pico.erp.company.CompanyService;
 import pico.erp.item.ItemData;
 import pico.erp.item.ItemId;
 import pico.erp.item.ItemService;
-import pico.erp.order.acceptance.OrderAcceptance;
 import pico.erp.order.acceptance.item.OrderAcceptanceItem;
+import pico.erp.order.acceptance.item.OrderAcceptanceItemEntity;
 import pico.erp.project.ProjectData;
 import pico.erp.project.ProjectId;
 import pico.erp.project.ProjectService;
@@ -71,16 +71,16 @@ public abstract class OrderAcceptanceJpaMapper {
       .name(entity.getName())
       .orderedDate(entity.getOrderedDate())
       .dueDate(entity.getDueDate())
-      .customerData(map(entity.getCustomerId()))
-      .managerData(map(entity.getManagerId()))
+      .customer(map(entity.getCustomerId()))
+      .manager(map(entity.getManagerId()))
       .purchaseOrderNumber(entity.getPurchaseOrderNumber())
       .deleted(entity.isDeleted())
       .deletedDate(entity.getDeletedDate())
       .acceptedDate(entity.getAcceptedDate())
       .deliveryAddress(entity.getDeliveryAddress())
-      .purchaserData(map(entity.getPurchaserId()))
-      .receiverData(map(entity.getReceiverId()))
-      .projectData(map(entity.getProjectId()))
+      .purchaser(map(entity.getPurchaserId()))
+      .receiver(map(entity.getReceiverId()))
+      .project(map(entity.getProjectId()))
       .status(entity.getStatus())
       .build();
   }
@@ -89,7 +89,7 @@ public abstract class OrderAcceptanceJpaMapper {
     return OrderAcceptanceItem.builder()
       .id(entity.getId())
       .orderAcceptance(map(entity.getOrderAcceptance()))
-      .itemData(map(entity.getItemId()))
+      .item(map(entity.getItemId()))
       .unitPrice(entity.getUnitPrice())
       .quantity(entity.getQuantity())
       .status(entity.getStatus())
@@ -97,16 +97,16 @@ public abstract class OrderAcceptanceJpaMapper {
   }
 
   @Mappings({
-    @Mapping(target = "customerId", source = "customerData.id"),
-    @Mapping(target = "customerName", source = "customerData.name"),
-    @Mapping(target = "managerId", source = "managerData.id"),
-    @Mapping(target = "managerName", source = "managerData.name"),
-    @Mapping(target = "purchaserId", source = "purchaserData.id"),
-    @Mapping(target = "purchaserName", source = "purchaserData.name"),
-    @Mapping(target = "receiverId", source = "receiverData.id"),
-    @Mapping(target = "receiverName", source = "receiverData.name"),
-    @Mapping(target = "projectId", source = "projectData.id"),
-    @Mapping(target = "projectName", source = "projectData.name"),
+    @Mapping(target = "customerId", source = "customer.id"),
+    @Mapping(target = "customerName", source = "customer.name"),
+    @Mapping(target = "managerId", source = "manager.id"),
+    @Mapping(target = "managerName", source = "manager.name"),
+    @Mapping(target = "purchaserId", source = "purchaser.id"),
+    @Mapping(target = "purchaserName", source = "purchaser.name"),
+    @Mapping(target = "receiverId", source = "receiver.id"),
+    @Mapping(target = "receiverName", source = "receiver.name"),
+    @Mapping(target = "projectId", source = "project.id"),
+    @Mapping(target = "projectName", source = "project.name"),
     @Mapping(target = "createdBy", ignore = true),
     @Mapping(target = "createdDate", ignore = true),
     @Mapping(target = "lastModifiedBy", ignore = true),
@@ -115,7 +115,7 @@ public abstract class OrderAcceptanceJpaMapper {
   public abstract OrderAcceptanceEntity map(OrderAcceptance data);
 
   @Mappings({
-    @Mapping(target = "itemId", source = "itemData.id"),
+    @Mapping(target = "itemId", source = "item.id"),
     @Mapping(target = "createdBy", ignore = true),
     @Mapping(target = "createdDate", ignore = true),
     @Mapping(target = "lastModifiedBy", ignore = true),

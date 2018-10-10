@@ -6,8 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pico.erp.item.ItemId;
-import pico.erp.order.acceptance.data.OrderAcceptanceId;
-import pico.erp.order.acceptance.item.data.OrderAcceptanceItemId;
+import pico.erp.order.acceptance.OrderAcceptanceId;
 
 public interface OrderAcceptanceItemRequests {
 

@@ -9,7 +9,6 @@ import lombok.Data;
 import lombok.Value;
 import pico.erp.item.ItemData;
 import pico.erp.order.acceptance.OrderAcceptance;
-import pico.erp.order.acceptance.item.data.OrderAcceptanceItemId;
 import pico.erp.shared.event.Event;
 
 public interface OrderAcceptanceItemMessages {
@@ -25,7 +24,7 @@ public interface OrderAcceptanceItemMessages {
     OrderAcceptance orderAcceptance;
 
     @NotNull
-    ItemData itemData;
+    ItemData item;
 
     @NotNull
     BigDecimal unitPrice;

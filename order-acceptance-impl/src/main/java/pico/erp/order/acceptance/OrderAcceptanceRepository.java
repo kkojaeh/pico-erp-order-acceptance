@@ -3,7 +3,6 @@ package pico.erp.order.acceptance;
 import java.util.Optional;
 import javax.validation.constraints.NotNull;
 import org.springframework.stereotype.Repository;
-import pico.erp.order.acceptance.data.OrderAcceptanceId;
 
 @Repository
 public interface OrderAcceptanceRepository {

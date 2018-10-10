@@ -9,13 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import pico.erp.audit.AuditService;
-import pico.erp.order.acceptance.OrderAcceptanceMapper;
-import pico.erp.order.acceptance.data.OrderAcceptanceId;
+import pico.erp.order.acceptance.OrderAcceptanceId;
 import pico.erp.order.acceptance.item.OrderAcceptanceItemRequests.CreateRequest;
 import pico.erp.order.acceptance.item.OrderAcceptanceItemRequests.DeleteRequest;
 import pico.erp.order.acceptance.item.OrderAcceptanceItemRequests.UpdateRequest;
-import pico.erp.order.acceptance.item.data.OrderAcceptanceItemData;
-import pico.erp.order.acceptance.item.data.OrderAcceptanceItemId;
 import pico.erp.shared.Public;
 import pico.erp.shared.event.EventPublisher;
 
@@ -33,7 +30,7 @@ public class OrderAcceptanceItemServiceLogic implements OrderAcceptanceItemServi
   private EventPublisher eventPublisher;
 
   @Autowired
-  private OrderAcceptanceMapper mapper;
+  private OrderAcceptanceItemMapper mapper;
 
   @Lazy
   @Autowired

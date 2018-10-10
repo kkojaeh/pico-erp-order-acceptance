@@ -1,4 +1,4 @@
-package pico.erp.order.acceptance.jpa;
+package pico.erp.order.acceptance;
 
 import static org.springframework.util.StringUtils.isEmpty;
 
@@ -16,8 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
-import pico.erp.order.acceptance.OrderAcceptanceQuery;
-import pico.erp.order.acceptance.data.OrderAcceptanceView;
+import pico.erp.order.acceptance.item.QOrderAcceptanceItemEntity;
 import pico.erp.shared.ExtendedLabeledValue;
 import pico.erp.shared.LabeledValue;
 import pico.erp.shared.Public;
