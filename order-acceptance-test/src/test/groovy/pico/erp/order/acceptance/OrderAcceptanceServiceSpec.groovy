@@ -70,8 +70,8 @@ class OrderAcceptanceServiceSpec extends Specification {
     def orderAcceptance = orderAcceptanceService.get(OrderAcceptanceId.from("order-1"))
 
     then:
-    orderAcceptance.id.value == "order-1"
     orderAcceptance.name == "테스트 주문 접수"
+    orderAcceptance.purchaseOrderNumber == "PO 번호"
   }
 
   def "아이디로 존재하지 않는 주문접수를 조회"() {

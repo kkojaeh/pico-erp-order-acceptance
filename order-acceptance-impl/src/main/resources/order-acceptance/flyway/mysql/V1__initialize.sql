@@ -1,5 +1,5 @@
 create table oda_order_acceptance (
-	id varchar(50) not null,
+	id binary(16) not null,
 	accepted_date datetime,
 	created_by_id varchar(50),
 	created_by_name varchar(50),
@@ -21,7 +21,7 @@ create table oda_order_acceptance (
 	manager_name varchar(50),
 	name varchar(50),
 	ordered_date datetime,
-	project_id varchar(50),
+	project_id binary(16),
 	project_name varchar(50),
 	purchase_order_number varchar(20),
 	purchaser_id varchar(50),
@@ -33,18 +33,18 @@ create table oda_order_acceptance (
 ) engine=InnoDB;
 
 create table oda_order_acceptance_item (
-	id varchar(50) not null,
+	id binary(16) not null,
 	created_by_id varchar(50),
 	created_by_name varchar(50),
 	created_date datetime,
-	item_id varchar(50),
+	item_id binary(16),
 	last_modified_by_id varchar(50),
 	last_modified_by_name varchar(50),
 	last_modified_date datetime,
 	quantity decimal(19,2),
 	status varchar(20),
 	unit_price decimal(19,2),
-	order_acceptance_id varchar(50),
+	order_acceptance_id binary(16),
 	primary key (id)
 ) engine=InnoDB;
 

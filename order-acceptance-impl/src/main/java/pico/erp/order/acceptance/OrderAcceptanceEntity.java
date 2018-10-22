@@ -49,7 +49,7 @@ public class OrderAcceptanceEntity implements Serializable {
 
   @EmbeddedId
   @AttributeOverrides({
-    @AttributeOverride(name = "value", column = @Column(name = "ID", length = TypeDefinitions.ID_LENGTH))
+    @AttributeOverride(name = "value", column = @Column(name = "ID", length = TypeDefinitions.UUID_BINARY_LENGTH))
   })
   OrderAcceptanceId id;
 
@@ -113,7 +113,7 @@ public class OrderAcceptanceEntity implements Serializable {
   String receiverName;
 
   @AttributeOverrides({
-    @AttributeOverride(name = "value", column = @Column(name = "PROJECT_ID", length = TypeDefinitions.ID_LENGTH))
+    @AttributeOverride(name = "value", column = @Column(name = "PROJECT_ID", length = TypeDefinitions.UUID_BINARY_LENGTH))
   })
   ProjectId projectId;
 
