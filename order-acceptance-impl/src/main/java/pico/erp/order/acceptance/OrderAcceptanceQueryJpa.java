@@ -122,7 +122,7 @@ public class OrderAcceptanceQueryJpa implements OrderAcceptanceQuery {
     if (filter.getItemId() != null) {
       builder.and(
         orderAcceptance.id.in(
-          JPAExpressions.select(orderAcceptanceItem.orderAcceptance.id)
+          JPAExpressions.select(orderAcceptanceItem.orderAcceptanceId)
             .from(orderAcceptanceItem)
             .where(orderAcceptanceItem.itemId.eq(filter.getItemId()))
         )

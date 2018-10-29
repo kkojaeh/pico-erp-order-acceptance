@@ -11,8 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.Index;
 import javax.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -24,13 +23,15 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import pico.erp.item.ItemId;
-import pico.erp.order.acceptance.OrderAcceptanceEntity;
+import pico.erp.order.acceptance.OrderAcceptanceId;
 import pico.erp.shared.TypeDefinitions;
 import pico.erp.shared.data.Auditor;
 
 @Data
 @Entity(name = "OrderAcceptanceItem")
-@Table(name = "ODA_ORDER_ACCEPTANCE_ITEM")
+@Table(name = "ODA_ORDER_ACCEPTANCE_ITEM", indexes = {
+  @Index(columnList = "ORDER_ACCEPTANCE_ID")
+})
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @EntityListeners(AuditingEntityListener.class)
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -42,9 +43,10 @@ public class OrderAcceptanceItemEntity {
   })
   OrderAcceptanceItemId id;
 
-  @ManyToOne
-  @JoinColumn(name = "ORDER_ACCEPTANCE_ID")
-  OrderAcceptanceEntity orderAcceptance;
+  @AttributeOverrides({
+    @AttributeOverride(name = "value", column = @Column(name = "ORDER_ACCEPTANCE_ID", length = TypeDefinitions.UUID_BINARY_LENGTH))
+  })
+  OrderAcceptanceId orderAcceptanceId;
 
   @AttributeOverrides({
     @AttributeOverride(name = "value", column = @Column(name = "ITEM_ID", length = TypeDefinitions.UUID_BINARY_LENGTH))

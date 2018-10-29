@@ -1,29 +1,11 @@
 package pico.erp.order.acceptance;
 
-import java.util.Optional;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
-import org.mapstruct.Mappings;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
-import pico.erp.company.CompanyData;
-import pico.erp.company.CompanyId;
-import pico.erp.company.CompanyService;
-import pico.erp.item.ItemData;
-import pico.erp.item.ItemId;
-import pico.erp.item.ItemService;
-import pico.erp.order.acceptance.item.OrderAcceptanceItem;
-import pico.erp.order.acceptance.item.OrderAcceptanceItemEntity;
-import pico.erp.project.ProjectData;
-import pico.erp.project.ProjectId;
-import pico.erp.project.ProjectService;
-import pico.erp.user.UserData;
-import pico.erp.user.UserId;
-import pico.erp.user.UserService;
 
 @Mapper
 public abstract class OrderAcceptanceJpaMapper {
+
+  /*
 
   @Lazy
   @Autowired
@@ -96,23 +78,6 @@ public abstract class OrderAcceptanceJpaMapper {
       .build();
   }
 
-  @Mappings({
-    @Mapping(target = "customerId", source = "customer.id"),
-    @Mapping(target = "customerName", source = "customer.name"),
-    @Mapping(target = "managerId", source = "manager.id"),
-    @Mapping(target = "managerName", source = "manager.name"),
-    @Mapping(target = "purchaserId", source = "purchaser.id"),
-    @Mapping(target = "purchaserName", source = "purchaser.name"),
-    @Mapping(target = "receiverId", source = "receiver.id"),
-    @Mapping(target = "receiverName", source = "receiver.name"),
-    @Mapping(target = "projectId", source = "project.id"),
-    @Mapping(target = "projectName", source = "project.name"),
-    @Mapping(target = "createdBy", ignore = true),
-    @Mapping(target = "createdDate", ignore = true),
-    @Mapping(target = "lastModifiedBy", ignore = true),
-    @Mapping(target = "lastModifiedDate", ignore = true)
-  })
-  public abstract OrderAcceptanceEntity map(OrderAcceptance data);
 
   @Mappings({
     @Mapping(target = "itemId", source = "item.id"),
@@ -127,5 +92,7 @@ public abstract class OrderAcceptanceJpaMapper {
 
   public abstract void pass(OrderAcceptanceItemEntity from,
     @MappingTarget OrderAcceptanceItemEntity to);
+
+    */
 
 }

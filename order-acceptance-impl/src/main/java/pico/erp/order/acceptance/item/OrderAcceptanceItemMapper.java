@@ -3,6 +3,7 @@ package pico.erp.order.acceptance.item;
 import java.util.Optional;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.Mappings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -45,6 +46,27 @@ public abstract class OrderAcceptanceItemMapper {
   public abstract OrderAcceptanceItemMessages.DeleteRequest map(
     OrderAcceptanceItemRequests.DeleteRequest request);
 
+  public OrderAcceptanceItem jpa(OrderAcceptanceItemEntity entity) {
+    return OrderAcceptanceItem.builder()
+      .id(entity.getId())
+      .orderAcceptance(map(entity.getOrderAcceptanceId()))
+      .item(map(entity.getItemId()))
+      .unitPrice(entity.getUnitPrice())
+      .quantity(entity.getQuantity())
+      .status(entity.getStatus())
+      .build();
+  }
+
+  @Mappings({
+    @Mapping(target = "orderAcceptanceId", source = "orderAcceptance.id"),
+    @Mapping(target = "itemId", source = "item.id"),
+    @Mapping(target = "createdBy", ignore = true),
+    @Mapping(target = "createdDate", ignore = true),
+    @Mapping(target = "lastModifiedBy", ignore = true),
+    @Mapping(target = "lastModifiedDate", ignore = true)
+  })
+  public abstract OrderAcceptanceItemEntity jpa(OrderAcceptanceItem data);
+
   protected OrderAcceptance map(OrderAcceptanceId orderAcceptanceId) {
     return orderAcceptanceMapper.map(orderAcceptanceId);
   }
@@ -54,6 +76,9 @@ public abstract class OrderAcceptanceItemMapper {
       .map(itemService::get)
       .orElse(null);
   }
+
+  public abstract void pass(OrderAcceptanceItemEntity from,
+    @MappingTarget OrderAcceptanceItemEntity to);
 
 
 }

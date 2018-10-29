@@ -21,14 +21,14 @@ public class OrderAcceptanceRepositoryJpa implements OrderAcceptanceRepository {
   private OrderAcceptanceEntityRepository repository;
 
   @Autowired
-  private OrderAcceptanceJpaMapper mapper;
+  private OrderAcceptanceMapper mapper;
 
 
   @Override
   public OrderAcceptance create(OrderAcceptance orderAcceptance) {
-    val entity = mapper.map(orderAcceptance);
+    val entity = mapper.jpa(orderAcceptance);
     val created = repository.save(entity);
-    return mapper.map(created);
+    return mapper.jpa(created);
   }
 
   @Override
@@ -44,13 +44,13 @@ public class OrderAcceptanceRepositoryJpa implements OrderAcceptanceRepository {
   @Override
   public Optional<OrderAcceptance> findBy(OrderAcceptanceId id) {
     return Optional.ofNullable(repository.findOne(id))
-      .map(mapper::map);
+      .map(mapper::jpa);
   }
 
   @Override
   public void update(OrderAcceptance orderAcceptance) {
     val entity = repository.findOne(orderAcceptance.getId());
-    mapper.pass(mapper.map(orderAcceptance), entity);
+    mapper.pass(mapper.jpa(orderAcceptance), entity);
     repository.save(entity);
   }
 }

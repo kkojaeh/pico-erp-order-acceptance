@@ -11,17 +11,16 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import pico.erp.item.ItemId;
 import pico.erp.order.acceptance.OrderAcceptanceId;
-import pico.erp.order.acceptance.OrderAcceptanceJpaMapper;
 
 @Repository
 interface OrderAcceptanceItemEntityRepository extends
   CrudRepository<OrderAcceptanceItemEntity, OrderAcceptanceItemId> {
 
-  @Query("SELECT CASE WHEN COUNT(oai) > 0 THEN true ELSE false END FROM OrderAcceptanceItem oai JOIN oai.orderAcceptance oa WHERE oa.id = :orderAcceptanceId AND oai.itemId = :itemId")
+  @Query("SELECT CASE WHEN COUNT(oai) > 0 THEN true ELSE false END FROM OrderAcceptanceItem oai WHERE oai.orderAcceptanceId = :orderAcceptanceId AND oai.itemId = :itemId")
   boolean exists(@Param("orderAcceptanceId") OrderAcceptanceId orderAcceptanceId,
     @Param("itemId") ItemId itemId);
 
-  @Query("SELECT oai FROM OrderAcceptanceItem oai JOIN oai.orderAcceptance oa  WHERE oa.id = :orderAcceptanceId")
+  @Query("SELECT oai FROM OrderAcceptanceItem oai WHERE oai.orderAcceptanceId = :orderAcceptanceId")
   Stream<OrderAcceptanceItemEntity> findAllBy(
     @Param("orderAcceptanceId") OrderAcceptanceId orderAcceptanceId);
 
@@ -35,13 +34,13 @@ public class OrderAcceptanceItemRepositoryJpa implements OrderAcceptanceItemRepo
   private OrderAcceptanceItemEntityRepository repository;
 
   @Autowired
-  private OrderAcceptanceJpaMapper mapper;
+  private OrderAcceptanceItemMapper mapper;
 
   @Override
   public OrderAcceptanceItem create(OrderAcceptanceItem orderAcceptanceItem) {
-    val entity = mapper.map(orderAcceptanceItem);
+    val entity = mapper.jpa(orderAcceptanceItem);
     val created = repository.save(entity);
-    return mapper.map(created);
+    return mapper.jpa(created);
   }
 
   @Override
@@ -62,19 +61,19 @@ public class OrderAcceptanceItemRepositoryJpa implements OrderAcceptanceItemRepo
   @Override
   public Stream<OrderAcceptanceItem> findAllBy(OrderAcceptanceId orderAcceptanceId) {
     return repository.findAllBy(orderAcceptanceId)
-      .map(mapper::map);
+      .map(mapper::jpa);
   }
 
   @Override
   public Optional<OrderAcceptanceItem> findBy(OrderAcceptanceItemId id) {
     return Optional.ofNullable(repository.findOne(id))
-      .map(mapper::map);
+      .map(mapper::jpa);
   }
 
   @Override
   public void update(OrderAcceptanceItem orderAcceptanceItem) {
     val entity = repository.findOne(orderAcceptanceItem.getId());
-    mapper.pass(mapper.map(orderAcceptanceItem), entity);
+    mapper.pass(mapper.jpa(orderAcceptanceItem), entity);
     repository.save(entity);
   }
 }

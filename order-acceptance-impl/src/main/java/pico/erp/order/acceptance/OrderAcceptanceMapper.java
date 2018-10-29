@@ -3,6 +3,7 @@ package pico.erp.order.acceptance;
 import java.util.Optional;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.Mappings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -99,6 +100,47 @@ public abstract class OrderAcceptanceMapper {
   public abstract OrderAcceptanceMessages.DeleteRequest map(DeleteRequest request);
 
   public abstract OrderAcceptanceMessages.AcceptRequest map(AcceptRequest request);
+
+  @Mappings({
+    @Mapping(target = "customerId", source = "customer.id"),
+    @Mapping(target = "customerName", source = "customer.name"),
+    @Mapping(target = "managerId", source = "manager.id"),
+    @Mapping(target = "managerName", source = "manager.name"),
+    @Mapping(target = "purchaserId", source = "purchaser.id"),
+    @Mapping(target = "purchaserName", source = "purchaser.name"),
+    @Mapping(target = "receiverId", source = "receiver.id"),
+    @Mapping(target = "receiverName", source = "receiver.name"),
+    @Mapping(target = "projectId", source = "project.id"),
+    @Mapping(target = "projectName", source = "project.name"),
+    @Mapping(target = "createdBy", ignore = true),
+    @Mapping(target = "createdDate", ignore = true),
+    @Mapping(target = "lastModifiedBy", ignore = true),
+    @Mapping(target = "lastModifiedDate", ignore = true)
+  })
+  public abstract OrderAcceptanceEntity jpa(OrderAcceptance data);
+
+  public OrderAcceptance jpa(OrderAcceptanceEntity entity) {
+    return OrderAcceptance.builder()
+      .id(entity.getId())
+      .name(entity.getName())
+      .orderedDate(entity.getOrderedDate())
+      .dueDate(entity.getDueDate())
+      .customer(map(entity.getCustomerId()))
+      .manager(map(entity.getManagerId()))
+      .purchaseOrderNumber(entity.getPurchaseOrderNumber())
+      .deleted(entity.isDeleted())
+      .deletedDate(entity.getDeletedDate())
+      .acceptedDate(entity.getAcceptedDate())
+      .deliveryAddress(entity.getDeliveryAddress())
+      .purchaser(map(entity.getPurchaserId()))
+      .receiver(map(entity.getReceiverId()))
+      .project(map(entity.getProjectId()))
+      .status(entity.getStatus())
+      .build();
+  }
+
+  public abstract void pass(OrderAcceptanceEntity from, @MappingTarget OrderAcceptanceEntity to);
+
 
 
 
