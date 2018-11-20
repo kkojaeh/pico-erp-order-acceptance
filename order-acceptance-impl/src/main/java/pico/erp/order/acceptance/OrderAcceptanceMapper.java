@@ -53,7 +53,6 @@ public abstract class OrderAcceptanceMapper {
   }
 
 
-
   protected ProjectData map(ProjectId projectId) {
     return Optional.ofNullable(projectId)
       .map(projectService::get)
@@ -76,7 +75,6 @@ public abstract class OrderAcceptanceMapper {
     @Mapping(target = "projectId", source = "project.id")
   })
   public abstract OrderAcceptanceData map(OrderAcceptance orderAcceptance);
-
 
 
   @Mappings({
@@ -132,6 +130,8 @@ public abstract class OrderAcceptanceMapper {
       .deletedDate(entity.getDeletedDate())
       .acceptedDate(entity.getAcceptedDate())
       .deliveryAddress(entity.getDeliveryAddress())
+      .deliveryMobilePhoneNumber(entity.getDeliveryMobilePhoneNumber())
+      .deliveryTelephoneNumber(entity.getDeliveryTelephoneNumber())
       .purchaser(map(entity.getPurchaserId()))
       .receiver(map(entity.getReceiverId()))
       .project(map(entity.getProjectId()))
@@ -140,10 +140,6 @@ public abstract class OrderAcceptanceMapper {
   }
 
   public abstract void pass(OrderAcceptanceEntity from, @MappingTarget OrderAcceptanceEntity to);
-
-
-
-
 
 
 }

@@ -13,10 +13,6 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import pico.erp.audit.annotation.Audit;
 import pico.erp.company.CompanyData;
-import pico.erp.order.acceptance.OrderAcceptanceEvents.AcceptedEvent;
-import pico.erp.order.acceptance.OrderAcceptanceEvents.CreatedEvent;
-import pico.erp.order.acceptance.OrderAcceptanceEvents.DeletedEvent;
-import pico.erp.order.acceptance.OrderAcceptanceEvents.UpdatedEvent;
 import pico.erp.order.acceptance.OrderAcceptanceExceptions.CannotAcceptException;
 import pico.erp.order.acceptance.OrderAcceptanceExceptions.CannotModifyException;
 import pico.erp.project.ProjectData;
@@ -93,13 +89,13 @@ public class OrderAcceptance implements Serializable {
     this.receiver = request.getReceiver();
     this.purchaser = request.getPurchaser();
     return new OrderAcceptanceMessages.CreateResponse(
-      Arrays.asList(new CreatedEvent(this.id))
+      Arrays.asList(new OrderAcceptanceEvents.CreatedEvent(this.id))
     );
   }
 
   public OrderAcceptanceMessages.UpdateResponse apply(
     OrderAcceptanceMessages.UpdateRequest request) {
-    if (!canModify()) {
+    if (!isModifiable()) {
       throw new CannotModifyException();
     }
     this.name = request.getName();
@@ -114,7 +110,7 @@ public class OrderAcceptance implements Serializable {
     this.receiver = request.getReceiver();
     this.purchaser = request.getPurchaser();
     return new OrderAcceptanceMessages.UpdateResponse(
-      Arrays.asList(new UpdatedEvent(this.id))
+      Arrays.asList(new OrderAcceptanceEvents.UpdatedEvent(this.id))
     );
   }
 
@@ -123,7 +119,7 @@ public class OrderAcceptance implements Serializable {
     deleted = true;
     deletedDate = OffsetDateTime.now();
     return new OrderAcceptanceMessages.DeleteResponse(
-      Arrays.asList(new DeletedEvent(this.id))
+      Arrays.asList(new OrderAcceptanceEvents.DeletedEvent(this.id))
     );
   }
 
@@ -135,11 +131,11 @@ public class OrderAcceptance implements Serializable {
     status = OrderAcceptanceStatusKind.ACCEPTED;
     acceptedDate = OffsetDateTime.now();
     return new OrderAcceptanceMessages.AcceptResponse(
-      Arrays.asList(new AcceptedEvent(this.id))
+      Arrays.asList(new OrderAcceptanceEvents.AcceptedEvent(this.id))
     );
   }
 
-  public boolean canModify() {
+  public boolean isModifiable() {
     return status == OrderAcceptanceStatusKind.CREATED;
   }
 
