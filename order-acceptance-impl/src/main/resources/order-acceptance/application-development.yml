@@ -12,7 +12,7 @@ spring:
 
 flyway:
   enabled: false
-  locations: classpath:warehouse/flyway/{vendor}
+  locations: classpath:order-acceptance/flyway/{vendor}
   table: flyway_schema_history_order_acceptance
   encoding: UTF-8
   baseline-on-migrate: true
