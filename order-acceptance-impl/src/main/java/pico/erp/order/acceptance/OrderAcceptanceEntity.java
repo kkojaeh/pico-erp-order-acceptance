@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Index;
 import javax.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -34,7 +35,9 @@ import pico.erp.shared.data.Auditor;
 import pico.erp.user.UserId;
 
 @Entity(name = "OrderAcceptance")
-@Table(name = "ODA_ORDER_ACCEPTANCE")
+@Table(name = "ODA_ORDER_ACCEPTANCE", indexes = {
+  @Index(columnList = "CODE", unique = true)
+})
 @Data
 @EqualsAndHashCode(of = "id")
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -53,6 +56,11 @@ public class OrderAcceptanceEntity implements Serializable {
   })
   OrderAcceptanceId id;
 
+  @AttributeOverrides({
+    @AttributeOverride(name = "value", column = @Column(name = "CODE", length = TypeDefinitions.CODE_LENGTH))
+  })
+  OrderAcceptanceCode code;
+
   @Column(length = TypeDefinitions.NAME_LENGTH)
   String name;
 
@@ -65,16 +73,10 @@ public class OrderAcceptanceEntity implements Serializable {
   })
   CompanyId customerId;
 
-  @Column(name = "CUSTOMER_NAME", length = TypeDefinitions.NAME_LENGTH)
-  String customerName;
-
   @AttributeOverrides({
     @AttributeOverride(name = "value", column = @Column(name = "MANAGER_ID", length = TypeDefinitions.ID_LENGTH))
   })
   UserId managerId;
-
-  @Column(name = "MANAGER_NAME", length = TypeDefinitions.NAME_LENGTH)
-  String managerName;
 
   @Column(length = TypeDefinitions.CODE_LENGTH)
   String purchaseOrderNumber;
@@ -101,24 +103,16 @@ public class OrderAcceptanceEntity implements Serializable {
   })
   CompanyId purchaserId;
 
-  @Column(name = "PURCHASER_NAME", length = TypeDefinitions.NAME_LENGTH)
-  String purchaserName;
 
   @AttributeOverrides({
     @AttributeOverride(name = "value", column = @Column(name = "RECEIVER_ID", length = TypeDefinitions.ID_LENGTH))
   })
   CompanyId receiverId;
 
-  @Column(name = "RECEIVER_NAME", length = TypeDefinitions.NAME_LENGTH)
-  String receiverName;
-
   @AttributeOverrides({
     @AttributeOverride(name = "value", column = @Column(name = "PROJECT_ID", length = TypeDefinitions.UUID_BINARY_LENGTH))
   })
   ProjectId projectId;
-
-  @Column(length = TypeDefinitions.NAME_LENGTH)
-  String projectName;
 
   @Column(length = TypeDefinitions.ENUM_LENGTH)
   @Enumerated(EnumType.STRING)

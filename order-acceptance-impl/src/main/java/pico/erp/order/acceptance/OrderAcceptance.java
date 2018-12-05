@@ -36,6 +36,8 @@ public class OrderAcceptance implements Serializable {
   @Id
   OrderAcceptanceId id;
 
+  OrderAcceptanceCode code;
+
   String name;
 
   OffsetDateTime orderedDate;
@@ -88,6 +90,7 @@ public class OrderAcceptance implements Serializable {
     this.project = request.getProject();
     this.receiver = request.getReceiver();
     this.purchaser = request.getPurchaser();
+    this.code = request.getCodeGenerator().generate(this);
     return new OrderAcceptanceMessages.CreateResponse(
       Arrays.asList(new OrderAcceptanceEvents.CreatedEvent(this.id))
     );
@@ -95,7 +98,7 @@ public class OrderAcceptance implements Serializable {
 
   public OrderAcceptanceMessages.UpdateResponse apply(
     OrderAcceptanceMessages.UpdateRequest request) {
-    if (!isModifiable()) {
+    if (!isUpdatable()) {
       throw new CannotModifyException();
     }
     this.name = request.getName();
@@ -135,7 +138,7 @@ public class OrderAcceptance implements Serializable {
     );
   }
 
-  public boolean isModifiable() {
+  public boolean isUpdatable() {
     return status == OrderAcceptanceStatusKind.CREATED;
   }
 

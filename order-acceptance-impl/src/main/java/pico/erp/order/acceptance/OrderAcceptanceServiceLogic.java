@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import pico.erp.audit.AuditService;
-import pico.erp.order.acceptance.OrderAcceptanceExceptions.AlreadyExistsException;
 import pico.erp.order.acceptance.OrderAcceptanceRequests.AcceptRequest;
 import pico.erp.order.acceptance.OrderAcceptanceRequests.CreateRequest;
 import pico.erp.order.acceptance.OrderAcceptanceRequests.DeleteRequest;
@@ -51,7 +50,10 @@ public class OrderAcceptanceServiceLogic implements OrderAcceptanceService {
     val orderAcceptance = new OrderAcceptance();
     val response = orderAcceptance.apply(mapper.map(request));
     if (orderAcceptanceRepository.exists(orderAcceptance.getId())) {
-      throw new AlreadyExistsException();
+      throw new OrderAcceptanceExceptions.AlreadyExistsException();
+    }
+    if (orderAcceptanceRepository.exists(orderAcceptance.getCode())) {
+      throw new OrderAcceptanceExceptions.CodeAlreadyExistsException();
     }
     val created = orderAcceptanceRepository.create(orderAcceptance);
     auditService.commit(created);

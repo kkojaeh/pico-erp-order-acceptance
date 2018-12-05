@@ -1,0 +1,16 @@
+data:
+  order-acceptances:
+  - id: order-acceptance-test
+    name: 테스트 주문 접수
+    ordered-date: 2018-12-05T10:16:34.990+09:00
+    due-date: 2030-12-05T10:16:34.990+09:00
+    customer-id: CUST1
+    project-id: sample-project1
+    purchaser-id: CUST1
+    receiver-id: CUST1
+    purchase-order-number: "PO 번호"
+    manager-id: "ysh"
+    delivery-address:
+      postal-code: '13496'
+      street: '경기도 성남시 분당구 장미로 42'
+      detail: '야탑리더스 410호'

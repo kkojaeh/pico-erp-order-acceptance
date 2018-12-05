@@ -70,5 +70,8 @@ public class OrderAcceptanceApplication implements ApplicationStarter {
     return new ApplicationImpl(application().run(args));
   }
 
-
+  @Override
+  public int getOrder() {
+    return 8;
+  }
 }

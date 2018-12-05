@@ -9,14 +9,49 @@ dependencies {
 
   compile project(':order-acceptance-impl')
 
-  testRuntimeOnly("com.github.kkojaeh.pico-erp-audit:audit-test:${auditVersion}")
+  testCompile("com.github.kkojaeh.pico-erp-user:user-test:${userVersion}")
 
-  testRuntimeOnly("com.github.kkojaeh.pico-erp-user:user-test:${userVersion}")
+  testCompile("com.github.kkojaeh.pico-erp-company:company-test:${companyVersion}"){
+    exclude group: "com.github.kkojaeh.pico-erp-user"
+    exclude group: "com.github.kkojaeh.pico-erp-attachment"
+  }
 
-  testRuntimeOnly("com.github.kkojaeh.pico-erp-item:item-test:${itemVersion}")
+  testCompile("com.github.kkojaeh.pico-erp-item:item-test:${itemVersion}"){
+    exclude group: "com.github.kkojaeh.pico-erp-user"
+    exclude group: "com.github.kkojaeh.pico-erp-attachment"
+    exclude group: "com.github.kkojaeh.pico-erp-company"
+  }
 
-  testRuntimeOnly("com.github.kkojaeh.pico-erp-project:project-test:${projectVersion}")
+  testCompile("com.github.kkojaeh.pico-erp-comment:comment-test:${commentVersion}")
 
-  testRuntimeOnly("com.github.kkojaeh.pico-erp-company:company-test:${companyVersion}")
+  testCompile("com.github.kkojaeh.pico-erp-audit:audit-test:${auditVersion}")
+
+  testCompile("com.github.kkojaeh.pico-erp-project:project-test:${projectVersion}"){
+    exclude group: "com.github.kkojaeh.pico-erp-user"
+    exclude group: "com.github.kkojaeh.pico-erp-attachment"
+    exclude group: "com.github.kkojaeh.pico-erp-company"
+  }
+
+  testCompile("com.github.kkojaeh.pico-erp-quotation:quotation-test:${quotationVersion}"){
+    exclude group: "com.github.kkojaeh.pico-erp-user"
+    exclude group: "com.github.kkojaeh.pico-erp-attachment"
+    exclude group: "com.github.kkojaeh.pico-erp-company"
+  }
+
+  testCompile("com.github.kkojaeh.pico-erp-attachment:attachment-test:${attachmentVersion}") {
+    exclude group: "com.github.kkojaeh.pico-erp-user"
+  }
+
+  testCompile("com.github.kkojaeh.pico-erp-bom:bom-test:${bomVersion}") {
+    exclude group: "com.github.kkojaeh.pico-erp-user"
+    exclude group: "com.github.kkojaeh.pico-erp-attachment"
+    exclude group: "com.github.kkojaeh.pico-erp-company"
+  }
+
+  testCompile("com.github.kkojaeh.pico-erp-process:process-test:${bomVersion}") {
+    exclude group: "com.github.kkojaeh.pico-erp-user"
+    exclude group: "com.github.kkojaeh.pico-erp-attachment"
+    exclude group: "com.github.kkojaeh.pico-erp-company"
+  }
 
 }

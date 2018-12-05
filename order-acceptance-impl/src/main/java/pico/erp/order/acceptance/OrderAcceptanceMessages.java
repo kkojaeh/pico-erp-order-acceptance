@@ -65,6 +65,10 @@ public interface OrderAcceptanceMessages {
     @NotNull
     ProjectData project;
 
+
+    @NotNull
+    OrderAcceptanceCodeGenerator codeGenerator;
+
   }
 
   @Data

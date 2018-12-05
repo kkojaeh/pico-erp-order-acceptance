@@ -40,6 +40,10 @@ public abstract class OrderAcceptanceMapper {
   @Autowired
   private ProjectService projectService;
 
+  @Lazy
+  @Autowired
+  protected OrderAcceptanceCodeGenerator orderAcceptanceCodeGenerator;
+
   protected UserData map(UserId userId) {
     return Optional.ofNullable(userId)
       .map(userService::get)
@@ -76,50 +80,10 @@ public abstract class OrderAcceptanceMapper {
   })
   public abstract OrderAcceptanceData map(OrderAcceptance orderAcceptance);
 
-
-  @Mappings({
-    @Mapping(target = "customer", source = "customerId"),
-    @Mapping(target = "manager", source = "managerId"),
-    @Mapping(target = "purchaser", source = "purchaserId"),
-    @Mapping(target = "receiver", source = "receiverId"),
-    @Mapping(target = "project", source = "projectId")
-  })
-  public abstract OrderAcceptanceMessages.CreateRequest map(CreateRequest request);
-
-  @Mappings({
-    @Mapping(target = "customer", source = "customerId"),
-    @Mapping(target = "manager", source = "managerId"),
-    @Mapping(target = "purchaser", source = "purchaserId"),
-    @Mapping(target = "receiver", source = "receiverId"),
-    @Mapping(target = "project", source = "projectId")
-  })
-  public abstract OrderAcceptanceMessages.UpdateRequest map(UpdateRequest request);
-
-  public abstract OrderAcceptanceMessages.DeleteRequest map(DeleteRequest request);
-
-  public abstract OrderAcceptanceMessages.AcceptRequest map(AcceptRequest request);
-
-  @Mappings({
-    @Mapping(target = "customerId", source = "customer.id"),
-    @Mapping(target = "customerName", source = "customer.name"),
-    @Mapping(target = "managerId", source = "manager.id"),
-    @Mapping(target = "managerName", source = "manager.name"),
-    @Mapping(target = "purchaserId", source = "purchaser.id"),
-    @Mapping(target = "purchaserName", source = "purchaser.name"),
-    @Mapping(target = "receiverId", source = "receiver.id"),
-    @Mapping(target = "receiverName", source = "receiver.name"),
-    @Mapping(target = "projectId", source = "project.id"),
-    @Mapping(target = "projectName", source = "project.name"),
-    @Mapping(target = "createdBy", ignore = true),
-    @Mapping(target = "createdDate", ignore = true),
-    @Mapping(target = "lastModifiedBy", ignore = true),
-    @Mapping(target = "lastModifiedDate", ignore = true)
-  })
-  public abstract OrderAcceptanceEntity jpa(OrderAcceptance data);
-
   public OrderAcceptance jpa(OrderAcceptanceEntity entity) {
     return OrderAcceptance.builder()
       .id(entity.getId())
+      .code(entity.getCode())
       .name(entity.getName())
       .orderedDate(entity.getOrderedDate())
       .dueDate(entity.getDueDate())
@@ -138,6 +102,42 @@ public abstract class OrderAcceptanceMapper {
       .status(entity.getStatus())
       .build();
   }
+
+  @Mappings({
+    @Mapping(target = "customer", source = "customerId"),
+    @Mapping(target = "manager", source = "managerId"),
+    @Mapping(target = "purchaser", source = "purchaserId"),
+    @Mapping(target = "receiver", source = "receiverId"),
+    @Mapping(target = "project", source = "projectId")
+  })
+  public abstract OrderAcceptanceMessages.UpdateRequest map(UpdateRequest request);
+
+  public abstract OrderAcceptanceMessages.DeleteRequest map(DeleteRequest request);
+
+  public abstract OrderAcceptanceMessages.AcceptRequest map(AcceptRequest request);
+
+  @Mappings({
+    @Mapping(target = "customerId", source = "customer.id"),
+    @Mapping(target = "managerId", source = "manager.id"),
+    @Mapping(target = "purchaserId", source = "purchaser.id"),
+    @Mapping(target = "receiverId", source = "receiver.id"),
+    @Mapping(target = "projectId", source = "project.id"),
+    @Mapping(target = "createdBy", ignore = true),
+    @Mapping(target = "createdDate", ignore = true),
+    @Mapping(target = "lastModifiedBy", ignore = true),
+    @Mapping(target = "lastModifiedDate", ignore = true)
+  })
+  public abstract OrderAcceptanceEntity jpa(OrderAcceptance data);
+
+  @Mappings({
+    @Mapping(target = "customer", source = "customerId"),
+    @Mapping(target = "manager", source = "managerId"),
+    @Mapping(target = "purchaser", source = "purchaserId"),
+    @Mapping(target = "receiver", source = "receiverId"),
+    @Mapping(target = "project", source = "projectId"),
+    @Mapping(target = "codeGenerator", expression = "java(orderAcceptanceCodeGenerator)")
+  })
+  public abstract OrderAcceptanceMessages.CreateRequest map(CreateRequest request);
 
   public abstract void pass(OrderAcceptanceEntity from, @MappingTarget OrderAcceptanceEntity to);
 

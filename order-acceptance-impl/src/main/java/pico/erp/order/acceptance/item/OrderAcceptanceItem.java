@@ -56,7 +56,7 @@ public class OrderAcceptanceItem implements Serializable {
     this.status = OrderAcceptanceItemStatusKind.CREATED;
     this.unitPrice = request.getUnitPrice();
     this.quantity = request.getQuantity();
-    if (!orderAcceptance.isModifiable()) {
+    if (!orderAcceptance.isUpdatable()) {
       throw new CannotModifyException();
     }
     return new OrderAcceptanceItemMessages.CreateResponse(
@@ -66,7 +66,7 @@ public class OrderAcceptanceItem implements Serializable {
 
   public OrderAcceptanceItemMessages.UpdateResponse apply(
     OrderAcceptanceItemMessages.UpdateRequest request) {
-    if (!orderAcceptance.isModifiable()) {
+    if (!orderAcceptance.isUpdatable()) {
       throw new OrderAcceptanceItemExceptions.CannotModifyException();
     }
     this.unitPrice = request.getUnitPrice();

@@ -25,11 +25,7 @@ public class OrderAcceptanceView {
 
   CompanyId customerId;
 
-  String customerName;
-
   UserId managerId;
-
-  String managerName;
 
   String purchaseOrderNumber;
 
@@ -37,15 +33,9 @@ public class OrderAcceptanceView {
 
   CompanyId purchaserId;
 
-  String purchaserName;
-
   CompanyId receiverId;
 
-  String receiverName;
-
   ProjectId projectId;
-
-  String projectName;
 
   OrderAcceptanceStatusKind status;
 

@@ -12,5 +12,21 @@ dependencies {
 
   compile("com.github.kkojaeh.pico-erp-shared:shared-impl:${sharedVersion}")
 
+  compileOnly("com.github.kkojaeh.pico-erp-user:user-api:${userVersion}")
+
+  compileOnly("com.github.kkojaeh.pico-erp-company:company-api:${companyVersion}")
+
+  compileOnly("com.github.kkojaeh.pico-erp-item:item-api:${itemVersion}")
+
+  compileOnly("com.github.kkojaeh.pico-erp-comment:comment-api:${commentVersion}")
+
+  compileOnly("com.github.kkojaeh.pico-erp-audit:audit-api:${auditVersion}")
+
+  compileOnly("com.github.kkojaeh.pico-erp-project:project-api:${projectVersion}")
+
+  compileOnly("com.github.kkojaeh.pico-erp-quotation:quotation-api:${quotationVersion}")
+
+  compileOnly("com.github.kkojaeh.pico-erp-attachment:attachment-api:${attachmentVersion}")
+
 }
 
