@@ -2,9 +2,6 @@ banner:
   location: classpath:order-acceptance/banner.txt
 
 spring:
-  profiles:
-    include:
-    - test-cfg
   application:
     name: pico-order-acceptance
   session:
