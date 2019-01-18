@@ -14,7 +14,7 @@ import lombok.experimental.FieldDefaults;
 import pico.erp.audit.annotation.Audit;
 import pico.erp.company.CompanyData;
 import pico.erp.order.acceptance.OrderAcceptanceExceptions.CannotAcceptException;
-import pico.erp.order.acceptance.OrderAcceptanceExceptions.CannotModifyException;
+import pico.erp.order.acceptance.OrderAcceptanceExceptions.CannotUpdateException;
 import pico.erp.project.ProjectData;
 import pico.erp.shared.data.Address;
 import pico.erp.user.UserData;
@@ -99,7 +99,7 @@ public class OrderAcceptance implements Serializable {
   public OrderAcceptanceMessages.UpdateResponse apply(
     OrderAcceptanceMessages.UpdateRequest request) {
     if (!isUpdatable()) {
-      throw new CannotModifyException();
+      throw new CannotUpdateException();
     }
     this.name = request.getName();
     this.dueDate = request.getDueDate();

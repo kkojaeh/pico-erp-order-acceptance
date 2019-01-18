@@ -17,8 +17,8 @@ public interface OrderAcceptanceExceptions {
     private static final long serialVersionUID = 1L;
   }
 
-  @ResponseStatus(code = HttpStatus.NOT_ACCEPTABLE, reason = "order-acceptance.cannot.modify.exception")
-  class CannotModifyException extends RuntimeException {
+  @ResponseStatus(code = HttpStatus.NOT_ACCEPTABLE, reason = "order-acceptance.cannot.update.exception")
+  class CannotUpdateException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
   }

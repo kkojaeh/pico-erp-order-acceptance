@@ -15,7 +15,7 @@ import lombok.experimental.FieldDefaults;
 import pico.erp.audit.annotation.Audit;
 import pico.erp.item.ItemData;
 import pico.erp.order.acceptance.OrderAcceptance;
-import pico.erp.order.acceptance.OrderAcceptanceExceptions.CannotModifyException;
+import pico.erp.order.acceptance.OrderAcceptanceExceptions.CannotUpdateException;
 import pico.erp.order.acceptance.item.OrderAcceptanceItemEvents.CreatedEvent;
 import pico.erp.order.acceptance.item.OrderAcceptanceItemEvents.DeletedEvent;
 import pico.erp.order.acceptance.item.OrderAcceptanceItemEvents.UpdatedEvent;
@@ -57,7 +57,7 @@ public class OrderAcceptanceItem implements Serializable {
     this.unitPrice = request.getUnitPrice();
     this.quantity = request.getQuantity();
     if (!orderAcceptance.isUpdatable()) {
-      throw new CannotModifyException();
+      throw new CannotUpdateException();
     }
     return new OrderAcceptanceItemMessages.CreateResponse(
       Arrays.asList(new CreatedEvent(this.id))
@@ -67,7 +67,7 @@ public class OrderAcceptanceItem implements Serializable {
   public OrderAcceptanceItemMessages.UpdateResponse apply(
     OrderAcceptanceItemMessages.UpdateRequest request) {
     if (!orderAcceptance.isUpdatable()) {
-      throw new OrderAcceptanceItemExceptions.CannotModifyException();
+      throw new OrderAcceptanceItemExceptions.CannotUpdateException();
     }
     this.unitPrice = request.getUnitPrice();
     this.quantity = request.getQuantity();
