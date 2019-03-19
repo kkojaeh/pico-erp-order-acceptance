@@ -36,7 +36,8 @@ import pico.erp.user.UserId;
 
 @Entity(name = "OrderAcceptance")
 @Table(name = "ODA_ORDER_ACCEPTANCE", indexes = {
-  @Index(columnList = "CODE", unique = true)
+  @Index(columnList = "CODE", unique = true),
+  @Index(columnList = "createdDate")
 })
 @Data
 @EqualsAndHashCode(of = "id")

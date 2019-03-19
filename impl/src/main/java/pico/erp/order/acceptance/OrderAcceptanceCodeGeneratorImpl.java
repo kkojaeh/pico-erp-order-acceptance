@@ -22,7 +22,7 @@ public class OrderAcceptanceCodeGeneratorImpl implements OrderAcceptanceCodeGene
       .with(LocalTime.MAX);
     long count = orderAcceptanceRepository.countCreatedBetween(begin, end);
     String value = String
-      .format("OA%d%s-%04d", now.getYear() % 100, Integer.toString(now.getMonthValue(), 16), count);
+      .format("OA%03d%02d-%04d", now.getYear() % 1000, now.getMonthValue(), count);
     return OrderAcceptanceCode.from(value);
   }
 
