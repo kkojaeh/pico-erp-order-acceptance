@@ -1,6 +1,6 @@
 package pico.erp.order.acceptance;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
@@ -34,11 +34,11 @@ public interface OrderAcceptanceRequests {
 
     @Past
     @NotNull
-    OffsetDateTime orderedDate;
+    LocalDateTime orderedDate;
 
     @Future
     @NotNull
-    OffsetDateTime dueDate;
+    LocalDateTime dueDate;
 
     @NotNull
     CompanyId customerId;
@@ -86,11 +86,11 @@ public interface OrderAcceptanceRequests {
 
     @Past
     @NotNull
-    OffsetDateTime orderedDate;
+    LocalDateTime orderedDate;
 
     @Future
     @NotNull
-    OffsetDateTime dueDate;
+    LocalDateTime dueDate;
 
     @NotNull
     CompanyId customerId;

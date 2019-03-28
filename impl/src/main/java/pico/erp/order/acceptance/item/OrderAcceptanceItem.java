@@ -12,7 +12,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
-import pico.erp.audit.annotation.Audit;
 import pico.erp.item.ItemData;
 import pico.erp.order.acceptance.OrderAcceptance;
 import pico.erp.order.acceptance.OrderAcceptanceExceptions.CannotUpdateException;
@@ -30,7 +29,6 @@ import pico.erp.order.acceptance.item.OrderAcceptanceItemEvents.UpdatedEvent;
 @EqualsAndHashCode(of = "id")
 @Builder(toBuilder = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Audit(alias = "order-acceptance-item")
 public class OrderAcceptanceItem implements Serializable {
 
   private static final long serialVersionUID = 1L;

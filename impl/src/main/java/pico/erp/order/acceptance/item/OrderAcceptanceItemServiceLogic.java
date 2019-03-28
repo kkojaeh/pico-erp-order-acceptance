@@ -2,23 +2,21 @@ package pico.erp.order.acceptance.item;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import kkojaeh.spring.boot.component.Give;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
-import pico.erp.audit.AuditService;
 import pico.erp.order.acceptance.OrderAcceptanceId;
 import pico.erp.order.acceptance.item.OrderAcceptanceItemRequests.CreateRequest;
 import pico.erp.order.acceptance.item.OrderAcceptanceItemRequests.DeleteRequest;
 import pico.erp.order.acceptance.item.OrderAcceptanceItemRequests.UpdateRequest;
-import pico.erp.shared.Public;
 import pico.erp.shared.event.EventPublisher;
 
 @SuppressWarnings("Duplicates")
 @Service
-@Public
+@Give
 @Transactional
 @Validated
 public class OrderAcceptanceItemServiceLogic implements OrderAcceptanceItemService {
@@ -32,10 +30,6 @@ public class OrderAcceptanceItemServiceLogic implements OrderAcceptanceItemServi
   @Autowired
   private OrderAcceptanceItemMapper mapper;
 
-  @Lazy
-  @Autowired
-  private AuditService auditService;
-
   @Override
   public OrderAcceptanceItemData create(CreateRequest request) {
     if (orderAcceptanceItemRepository.exists(request.getOrderAcceptanceId(), request.getItemId())) {
@@ -47,7 +41,6 @@ public class OrderAcceptanceItemServiceLogic implements OrderAcceptanceItemServi
       throw new OrderAcceptanceItemExceptions.AlreadyExistsException();
     }
     val created = orderAcceptanceItemRepository.create(orderAcceptanceItem);
-    auditService.commit(created);
     eventPublisher.publishEvents(response.getEvents());
     return mapper.map(created);
   }
@@ -58,7 +51,6 @@ public class OrderAcceptanceItemServiceLogic implements OrderAcceptanceItemServi
       .orElseThrow(OrderAcceptanceItemExceptions.NotFoundException::new);
     val response = orderAcceptanceItem.apply(mapper.map(request));
     orderAcceptanceItemRepository.deleteBy(orderAcceptanceItem.getId());
-    auditService.delete(orderAcceptanceItem);
     eventPublisher.publishEvents(response.getEvents());
   }
 
@@ -87,7 +79,6 @@ public class OrderAcceptanceItemServiceLogic implements OrderAcceptanceItemServi
       .orElseThrow(OrderAcceptanceItemExceptions.NotFoundException::new);
     val response = orderAcceptanceItem.apply(mapper.map(request));
     orderAcceptanceItemRepository.update(orderAcceptanceItem);
-    auditService.commit(orderAcceptanceItem);
     eventPublisher.publishEvents(response.getEvents());
   }
 }

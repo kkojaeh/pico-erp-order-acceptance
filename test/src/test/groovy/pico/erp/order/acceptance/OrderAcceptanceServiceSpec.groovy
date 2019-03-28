@@ -1,27 +1,29 @@
 package pico.erp.order.acceptance
 
+import kkojaeh.spring.boot.component.SpringBootTestComponent
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.context.annotation.ComponentScan
-import org.springframework.context.annotation.Configuration
 import org.springframework.test.annotation.Rollback
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.transaction.annotation.Transactional
+import pico.erp.company.CompanyApplication
 import pico.erp.company.CompanyId
+import pico.erp.item.ItemApplication
+import pico.erp.project.ProjectApplication
 import pico.erp.project.ProjectId
-import pico.erp.shared.IntegrationConfiguration
+import pico.erp.shared.TestParentApplication
 import pico.erp.shared.data.Address
+import pico.erp.user.UserApplication
 import pico.erp.user.UserId
 import spock.lang.Specification
 
-import java.time.OffsetDateTime
+import java.time.LocalDateTime
 
-@SpringBootTest(classes = [IntegrationConfiguration])
+@SpringBootTest(classes = [OrderAcceptanceApplication, TestConfig])
+@SpringBootTestComponent(parent = TestParentApplication, siblings = [ItemApplication, ProjectApplication, CompanyApplication, UserApplication])
 @Transactional
 @Rollback
 @ActiveProfiles("test")
-@Configuration
-@ComponentScan("pico.erp.config")
 class OrderAcceptanceServiceSpec extends Specification {
 
   @Autowired
@@ -30,8 +32,8 @@ class OrderAcceptanceServiceSpec extends Specification {
   def id = OrderAcceptanceId.from("test")
   def unknownId = OrderAcceptanceId.from("unknown")
   def name = "테스트 주문 접수"
-  def orderedDate = OffsetDateTime.now().minusDays(1)
-  def dueDate = OffsetDateTime.now().plusDays(7)
+  def orderedDate = LocalDateTime.now().minusDays(1)
+  def dueDate = LocalDateTime.now().plusDays(7)
   def customerId = CompanyId.from("CUST1")
   def purchaserId = CompanyId.from("CUST1")
   def receiverId = CompanyId.from("CUST1")
