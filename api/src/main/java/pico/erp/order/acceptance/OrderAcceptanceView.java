@@ -1,6 +1,6 @@
 package pico.erp.order.acceptance;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,9 +19,9 @@ public class OrderAcceptanceView {
 
   String name;
 
-  OffsetDateTime orderedDate;
+  LocalDateTime orderedDate;
 
-  OffsetDateTime dueDate;
+  LocalDateTime dueDate;
 
   CompanyId customerId;
 
@@ -29,7 +29,7 @@ public class OrderAcceptanceView {
 
   String purchaseOrderNumber;
 
-  OffsetDateTime acceptedDate;
+  LocalDateTime acceptedDate;
 
   CompanyId purchaserId;
 
@@ -41,7 +41,7 @@ public class OrderAcceptanceView {
 
   Auditor createdBy;
 
-  OffsetDateTime createdDate;
+  LocalDateTime createdDate;
 
   @Data
   @NoArgsConstructor
@@ -61,9 +61,9 @@ public class OrderAcceptanceView {
 
     Set<OrderAcceptanceStatusKind> statuses;
 
-    OffsetDateTime startDueDate;
+    LocalDateTime startDueDate;
 
-    OffsetDateTime endDueDate;
+    LocalDateTime endDueDate;
 
   }
 

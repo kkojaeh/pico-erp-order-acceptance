@@ -1,6 +1,6 @@
 package pico.erp.order.acceptance;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +15,8 @@ interface OrderAcceptanceEntityRepository extends
   CrudRepository<OrderAcceptanceEntity, OrderAcceptanceId> {
 
   @Query("SELECT COUNT(a) FROM OrderAcceptance a WHERE a.createdDate >= :begin AND a.createdDate <= :end")
-  long countCreatedBetween(@Param("begin") OffsetDateTime begin,
-    @Param("end") OffsetDateTime end);
+  long countCreatedBetween(@Param("begin") LocalDateTime begin,
+    @Param("end") LocalDateTime end);
 
   @Query("SELECT CASE WHEN COUNT(a) > 0 THEN true ELSE false END FROM OrderAcceptance a WHERE a.code = :code")
   boolean exists(@Param("code") OrderAcceptanceCode code);
@@ -42,29 +42,29 @@ public class OrderAcceptanceRepositoryJpa implements OrderAcceptanceRepository {
   }
 
   @Override
-  public void deleteBy(OrderAcceptanceId id) {
-    repository.delete(id);
-  }
-
-  @Override
-  public boolean exists(OrderAcceptanceId id) {
-    return repository.exists(id);
-  }
-
-  @Override
-  public long countCreatedBetween(OffsetDateTime begin, OffsetDateTime end) {
+  public long countCreatedBetween(LocalDateTime begin, LocalDateTime end) {
     return repository.countCreatedBetween(begin, end);
   }
 
   @Override
+  public void deleteBy(OrderAcceptanceId id) {
+    repository.deleteById(id);
+  }
+
+  @Override
+  public boolean exists(OrderAcceptanceId id) {
+    return repository.existsById(id);
+  }
+
+  @Override
   public Optional<OrderAcceptance> findBy(OrderAcceptanceId id) {
-    return Optional.ofNullable(repository.findOne(id))
+    return repository.findById(id)
       .map(mapper::jpa);
   }
 
   @Override
   public void update(OrderAcceptance orderAcceptance) {
-    val entity = repository.findOne(orderAcceptance.getId());
+    val entity = repository.findById(orderAcceptance.getId()).get();
     mapper.pass(mapper.jpa(orderAcceptance), entity);
     repository.save(entity);
   }

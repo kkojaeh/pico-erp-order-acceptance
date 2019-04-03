@@ -1,7 +1,7 @@
 package pico.erp.order.acceptance;
 
 import java.io.Serializable;
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import javax.persistence.Id;
 import lombok.AccessLevel;
@@ -11,7 +11,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
-import pico.erp.audit.annotation.Audit;
 import pico.erp.company.CompanyData;
 import pico.erp.order.acceptance.OrderAcceptanceExceptions.CannotAcceptException;
 import pico.erp.order.acceptance.OrderAcceptanceExceptions.CannotUpdateException;
@@ -28,7 +27,6 @@ import pico.erp.user.UserData;
 @EqualsAndHashCode(of = "id")
 @Builder(toBuilder = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Audit(alias = "order-acceptance")
 public class OrderAcceptance implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -40,9 +38,9 @@ public class OrderAcceptance implements Serializable {
 
   String name;
 
-  OffsetDateTime orderedDate;
+  LocalDateTime orderedDate;
 
-  OffsetDateTime dueDate;
+  LocalDateTime dueDate;
 
   CompanyData customer;
 
@@ -52,9 +50,9 @@ public class OrderAcceptance implements Serializable {
 
   boolean deleted;
 
-  OffsetDateTime deletedDate;
+  LocalDateTime deletedDate;
 
-  OffsetDateTime acceptedDate;
+  LocalDateTime acceptedDate;
 
   Address deliveryAddress;
 
@@ -120,7 +118,7 @@ public class OrderAcceptance implements Serializable {
   public OrderAcceptanceMessages.DeleteResponse apply(
     OrderAcceptanceMessages.DeleteRequest request) {
     deleted = true;
-    deletedDate = OffsetDateTime.now();
+    deletedDate = LocalDateTime.now();
     return new OrderAcceptanceMessages.DeleteResponse(
       Arrays.asList(new OrderAcceptanceEvents.DeletedEvent(this.id))
     );
@@ -132,7 +130,7 @@ public class OrderAcceptance implements Serializable {
       throw new CannotAcceptException();
     }
     status = OrderAcceptanceStatusKind.ACCEPTED;
-    acceptedDate = OffsetDateTime.now();
+    acceptedDate = LocalDateTime.now();
     return new OrderAcceptanceMessages.AcceptResponse(
       Arrays.asList(new OrderAcceptanceEvents.AcceptedEvent(this.id))
     );

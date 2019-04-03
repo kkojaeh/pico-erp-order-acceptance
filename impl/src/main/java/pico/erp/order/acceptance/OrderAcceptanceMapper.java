@@ -1,6 +1,7 @@
 package pico.erp.order.acceptance;
 
 import java.util.Optional;
+import kkojaeh.spring.boot.component.ComponentAutowired;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
@@ -24,20 +25,17 @@ import pico.erp.user.UserService;
 @Mapper
 public abstract class OrderAcceptanceMapper {
 
-  @Lazy
-  @Autowired
+  @ComponentAutowired
   private CompanyService companyService;
 
-  @Lazy
-  @Autowired
+  @ComponentAutowired
   private UserService userService;
 
   @Lazy
   @Autowired
   private OrderAcceptanceRepository orderAcceptanceRepository;
 
-  @Lazy
-  @Autowired
+  @ComponentAutowired
   private ProjectService projectService;
 
   @Lazy

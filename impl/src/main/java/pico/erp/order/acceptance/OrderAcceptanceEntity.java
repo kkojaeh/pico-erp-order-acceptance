@@ -2,7 +2,7 @@ package pico.erp.order.acceptance;
 
 
 import java.io.Serializable;
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -65,9 +65,9 @@ public class OrderAcceptanceEntity implements Serializable {
   @Column(length = TypeDefinitions.NAME_LENGTH)
   String name;
 
-  OffsetDateTime orderedDate;
+  LocalDateTime orderedDate;
 
-  OffsetDateTime dueDate;
+  LocalDateTime dueDate;
 
   @AttributeOverrides({
     @AttributeOverride(name = "value", column = @Column(name = "CUSTOMER_ID", length = TypeDefinitions.ID_LENGTH))
@@ -86,10 +86,10 @@ public class OrderAcceptanceEntity implements Serializable {
   boolean deleted;
 
   @Column
-  OffsetDateTime deletedDate;
+  LocalDateTime deletedDate;
 
   @Column
-  OffsetDateTime acceptedDate;
+  LocalDateTime acceptedDate;
 
   @Embedded
   @AttributeOverrides({
@@ -135,7 +135,7 @@ public class OrderAcceptanceEntity implements Serializable {
 
   @CreatedDate
   @Column(updatable = false)
-  OffsetDateTime createdDate;
+  LocalDateTime createdDate;
 
   @Embedded
   @AttributeOverrides({
@@ -146,7 +146,7 @@ public class OrderAcceptanceEntity implements Serializable {
   Auditor lastModifiedBy;
 
   @LastModifiedDate
-  OffsetDateTime lastModifiedDate;
+  LocalDateTime lastModifiedDate;
 
 
   /*

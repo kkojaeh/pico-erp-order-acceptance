@@ -45,12 +45,12 @@ public class OrderAcceptanceItemRepositoryJpa implements OrderAcceptanceItemRepo
 
   @Override
   public void deleteBy(OrderAcceptanceItemId id) {
-    repository.delete(id);
+    repository.deleteById(id);
   }
 
   @Override
   public boolean exists(OrderAcceptanceItemId id) {
-    return repository.exists(id);
+    return repository.existsById(id);
   }
 
   @Override
@@ -66,13 +66,13 @@ public class OrderAcceptanceItemRepositoryJpa implements OrderAcceptanceItemRepo
 
   @Override
   public Optional<OrderAcceptanceItem> findBy(OrderAcceptanceItemId id) {
-    return Optional.ofNullable(repository.findOne(id))
+    return repository.findById(id)
       .map(mapper::jpa);
   }
 
   @Override
   public void update(OrderAcceptanceItem orderAcceptanceItem) {
-    val entity = repository.findOne(orderAcceptanceItem.getId());
+    val entity = repository.findById(orderAcceptanceItem.getId()).get();
     mapper.pass(mapper.jpa(orderAcceptanceItem), entity);
     repository.save(entity);
   }

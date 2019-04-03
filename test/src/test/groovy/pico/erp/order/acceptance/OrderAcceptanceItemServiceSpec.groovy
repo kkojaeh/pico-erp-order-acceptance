@@ -1,9 +1,8 @@
 package pico.erp.order.acceptance
 
+import kkojaeh.spring.boot.component.SpringBootTestComponent
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.context.annotation.ComponentScan
-import org.springframework.context.annotation.Configuration
 import org.springframework.test.annotation.Rollback
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.transaction.annotation.Transactional
@@ -12,15 +11,15 @@ import pico.erp.order.acceptance.item.OrderAcceptanceItemExceptions
 import pico.erp.order.acceptance.item.OrderAcceptanceItemId
 import pico.erp.order.acceptance.item.OrderAcceptanceItemRequests
 import pico.erp.order.acceptance.item.OrderAcceptanceItemService
-import pico.erp.shared.IntegrationConfiguration
+import pico.erp.shared.ComponentDefinitionServiceLoaderTestComponentSiblingsSupplier
+import pico.erp.shared.TestParentApplication
 import spock.lang.Specification
 
-@SpringBootTest(classes = [IntegrationConfiguration])
+@SpringBootTest(classes = [OrderAcceptanceApplication, TestConfig])
+@SpringBootTestComponent(parent = TestParentApplication, siblingsSupplier = ComponentDefinitionServiceLoaderTestComponentSiblingsSupplier.class)
 @Transactional
 @Rollback
 @ActiveProfiles("test")
-@Configuration
-@ComponentScan("pico.erp.config")
 class OrderAcceptanceItemServiceSpec extends Specification {
 
   @Autowired

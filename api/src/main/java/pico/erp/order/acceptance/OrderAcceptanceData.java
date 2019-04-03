@@ -1,6 +1,6 @@
 package pico.erp.order.acceptance;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import lombok.Data;
 import pico.erp.company.CompanyId;
 import pico.erp.project.ProjectId;
@@ -14,9 +14,9 @@ public class OrderAcceptanceData {
 
   String name;
 
-  OffsetDateTime orderedDate;
+  LocalDateTime orderedDate;
 
-  OffsetDateTime dueDate;
+  LocalDateTime dueDate;
 
   CompanyId customerId;
 
@@ -26,9 +26,9 @@ public class OrderAcceptanceData {
 
   boolean deleted;
 
-  OffsetDateTime deletedDate;
+  LocalDateTime deletedDate;
 
-  OffsetDateTime acceptedDate;
+  LocalDateTime acceptedDate;
 
   Address deliveryAddress;
 

@@ -1,6 +1,6 @@
 package pico.erp.order.acceptance;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import javax.validation.Valid;
 import javax.validation.constraints.Future;
@@ -31,11 +31,11 @@ public interface OrderAcceptanceMessages {
 
     @Past
     @NotNull
-    OffsetDateTime orderedDate;
+    LocalDateTime orderedDate;
 
     @Future
     @NotNull
-    OffsetDateTime dueDate;
+    LocalDateTime dueDate;
 
     @NotNull
     CompanyData customer;
@@ -80,7 +80,7 @@ public interface OrderAcceptanceMessages {
 
     @Future
     @NotNull
-    OffsetDateTime dueDate;
+    LocalDateTime dueDate;
 
     @NotNull
     CompanyData customer;

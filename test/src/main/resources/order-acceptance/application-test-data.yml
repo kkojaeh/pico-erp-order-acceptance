@@ -2,8 +2,8 @@ data:
   order-acceptances:
   - id: order-acceptance-test
     name: 테스트 주문 접수
-    ordered-date: 2018-12-05T10:16:34.990+09:00
-    due-date: 2030-12-05T10:16:34.990+09:00
+    ordered-date: 2018-12-05T10:16:34
+    due-date: 2030-12-05T10:16:34
     customer-id: CUST1
     project-id: sample-project1
     purchaser-id: CUST1
