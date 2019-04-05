@@ -1,6 +1,6 @@
 package pico.erp.order.acceptance;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.Optional;
 import javax.validation.constraints.NotNull;
 import org.springframework.stereotype.Repository;
@@ -14,7 +14,7 @@ public interface OrderAcceptanceRepository {
 
   boolean exists(@NotNull OrderAcceptanceId id);
 
-  long countCreatedBetween(LocalDateTime begin, LocalDateTime end);
+  long countCreatedBetween(OffsetDateTime begin, OffsetDateTime end);
 
   Optional<OrderAcceptance> findBy(@NotNull OrderAcceptanceId id);
 

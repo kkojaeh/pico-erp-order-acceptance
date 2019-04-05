@@ -1,7 +1,7 @@
 package pico.erp.order.acceptance;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import javax.persistence.Id;
 import lombok.AccessLevel;
@@ -38,9 +38,9 @@ public class OrderAcceptance implements Serializable {
 
   String name;
 
-  LocalDateTime orderedDate;
+  OffsetDateTime orderedDate;
 
-  LocalDateTime dueDate;
+  OffsetDateTime dueDate;
 
   CompanyData customer;
 
@@ -50,9 +50,9 @@ public class OrderAcceptance implements Serializable {
 
   boolean deleted;
 
-  LocalDateTime deletedDate;
+  OffsetDateTime deletedDate;
 
-  LocalDateTime acceptedDate;
+  OffsetDateTime acceptedDate;
 
   Address deliveryAddress;
 
@@ -118,7 +118,7 @@ public class OrderAcceptance implements Serializable {
   public OrderAcceptanceMessages.DeleteResponse apply(
     OrderAcceptanceMessages.DeleteRequest request) {
     deleted = true;
-    deletedDate = LocalDateTime.now();
+    deletedDate = OffsetDateTime.now();
     return new OrderAcceptanceMessages.DeleteResponse(
       Arrays.asList(new OrderAcceptanceEvents.DeletedEvent(this.id))
     );
@@ -130,7 +130,7 @@ public class OrderAcceptance implements Serializable {
       throw new CannotAcceptException();
     }
     status = OrderAcceptanceStatusKind.ACCEPTED;
-    acceptedDate = LocalDateTime.now();
+    acceptedDate = OffsetDateTime.now();
     return new OrderAcceptanceMessages.AcceptResponse(
       Arrays.asList(new OrderAcceptanceEvents.AcceptedEvent(this.id))
     );
